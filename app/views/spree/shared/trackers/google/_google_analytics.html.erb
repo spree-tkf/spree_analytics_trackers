@@ -6,7 +6,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     <% if user_analytics_id = try_spree_current_user.try(:analytics_id) %>
-      ga('create', { 'trackingId': '<%= tracker.analytics_id %>', 'cookieDomain': 'auto', 'userId': '<%= user_analytics_id %>' });
+      ga('create', { 'trackingId': '<%= Spree::Tracker.current(:google_analytics).analytics_id %>', 'cookieDomain': 'auto', 'userId': '<%= user_analytics_id %>' });
     <% else %>
       ga('create', '<%= tracker.analytics_id %>', 'auto');
     <% end %>
