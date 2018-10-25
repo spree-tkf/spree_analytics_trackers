@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SpreeAnalyticsTrackers.version
   s.summary     = 'Adds analytics trackers functionality to Spree'
   s.description = 'Supports Google Analytics '
-  s.required_ruby_version = '>= 2.2.7'
+  s.required_ruby_version = '>= 2.4.5'
 
   s.author    = 'Spark Solutions'
   s.email     = 'we@sparksolutions.co'
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  spree_version = '>= 3.1.0', '< 4.0'
+  spree_version = '>= 3.5.0', '< 4.0'
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_extension'
