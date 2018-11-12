@@ -4,6 +4,7 @@ module Spree
       {
         product_id: product.id,
         sku: product.sku,
+        ecomm_prodid: product.sku + "_" + product.currency, 
         category: product.category.try(:name),
         name: product.name,
         brand: product.brand.try(:name),

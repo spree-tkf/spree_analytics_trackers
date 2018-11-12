@@ -1,5 +1,4 @@
-<% if tracker = Spree::Tracker.current(:segment) %>
-  <% if params.key?(:keywords) %>
+<% if tracker = Spree::Tracker.current(:segment) && params.key?(:keywords) %>
     <script>
       if (typeof analytics !== 'undefined') {
         analytics.track('Products Searched', {
@@ -10,5 +9,4 @@
         });
       }
     </script>
-  <% end %>
 <% end %>

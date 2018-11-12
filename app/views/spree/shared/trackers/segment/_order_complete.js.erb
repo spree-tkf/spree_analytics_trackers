@@ -1,5 +1,4 @@
-<% if tracker = Spree::Tracker.current(:segment) %>
-  <% if order_just_completed?(@order) %>
+<% if tracker = Spree::Tracker.current(:segment) && order_just_completed?(@order) %>
     <script>
       if (typeof analytics !== 'undefined') {
         analytics.track('Order Completed', {
@@ -46,5 +45,4 @@
 
       }
     </script>
-  <% end %>
 <% end %>
