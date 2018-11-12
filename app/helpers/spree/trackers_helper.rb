@@ -4,12 +4,12 @@ module Spree
       {
         product_id: product.id,
         sku: product.sku,
-        ecomm_prodid: product.sku + "_" + product.currency, 
+        ecomm_prodid: product.sku + "_" + current_currency,
         category: product.category.try(:name),
         name: product.name,
         brand: product.brand.try(:name),
         price: product.price.to_f,
-        currency: product.currency,
+        currency: current_currency,
         url: product_url(product),
       }.tap do |hash|
         # This method returns either asset_url (Paperclip) or rails_blob_path (ActiveStorage) to return the specified image(s)
