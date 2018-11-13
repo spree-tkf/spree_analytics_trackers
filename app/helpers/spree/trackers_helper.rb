@@ -2,7 +2,7 @@ module Spree
   module TrackersHelper
     def product_for_segment(product, optional = {})
       {
-        product_id: product.id,
+        product_id: product.sku,
         sku: product.sku,
         ecomm_prodid: product.sku + "_" + current_currency,
         category: product.category.try(:name),
