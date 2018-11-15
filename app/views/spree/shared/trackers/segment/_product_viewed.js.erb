@@ -1,9 +1,9 @@
 <% if tracker = Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Product Viewed', <%= product_for_segment(@product, image: @product.images.first) %>);
       
-      analytics.page('product');
+      analytics.track('product', <%= product_for_segment(@product, image: @product.images.first) %>);
+
     }
   </script>
 <% end %>

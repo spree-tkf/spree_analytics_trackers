@@ -1,7 +1,8 @@
 <% if tracker = Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Product List Viewed', {
+      
+      analytics.track('category', {
         category: '<%= @taxon.try(:name) %>',
         products: [
         <% products.each_with_index do |product, index| %>
@@ -9,8 +10,6 @@
         <% end %>
         ]
       });
-
-      analytics.page('category');
 
     }
   </script>

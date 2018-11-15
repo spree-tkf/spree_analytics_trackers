@@ -1,7 +1,8 @@
 <% if tracker = Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Checkout Step Viewed', {
+
+      analytics.track('cart', {
         checkout_id: '<%= @order.number %>',
         step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
       });

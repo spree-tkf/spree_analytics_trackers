@@ -1,7 +1,8 @@
 <% if tracker = Spree::Tracker.current(:segment) && params[:search].present? %>
     <script>
       if (typeof analytics !== 'undefined') {
-        analytics.track('Product List Filtered', {
+        
+        analytics.track('category', {
           filters: [
             <% params[:search].to_unsafe_h.each do |type, value| %>
               <%= { type: type, value: value } .to_json.html_safe %>,
@@ -13,8 +14,6 @@
           <% end %>
           ]
         });
-
-        analytics.page('category');
 
       }
     </script>

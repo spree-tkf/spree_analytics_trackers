@@ -1,7 +1,8 @@
 <% if tracker = Spree::Tracker.current(:segment) %>
   <script>
     if (typeof analytics !== 'undefined') {
-      analytics.track('Cart Viewed', {
+      
+      analytics.track('cart', {
         cart_id: '<%= @order.number %>',
         products: [
         <% @order.line_items.each_with_index do |line_item, index| %>
@@ -10,7 +11,6 @@
         ]
       });
 
-      analytics.page('cart');
     }
   </script>
 <% end %>
