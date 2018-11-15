@@ -1,8 +1,9 @@
 <% if tracker = Spree::Tracker.current(:segment) && order_just_completed?(@order) %>
     <script>
       if (typeof analytics !== 'undefined') {
-        
-        analytics.track('purchase', {
+
+        analytics.track('Order Completed', {
+          ecomm_pagetype: 'purchase',
           order_id: '<%= @order.number %>',
           total: <%= @order.total %>,
           shipping: <%= @order.shipment_total %>,

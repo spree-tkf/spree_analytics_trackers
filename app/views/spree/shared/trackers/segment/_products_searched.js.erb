@@ -1,8 +1,8 @@
 <% if tracker = Spree::Tracker.current(:segment) && params.key?(:keywords) %>
     <script>
       if (typeof analytics !== 'undefined') {
-        
-        analytics.track('searchresults', {
+
+        analytics.track('Products Searched', {
           query: '<%= params[:keywords] %>',
         });
 

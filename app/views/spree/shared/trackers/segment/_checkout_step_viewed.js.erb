@@ -2,11 +2,12 @@
   <script>
     if (typeof analytics !== 'undefined') {
 
-      analytics.track('cart', {
+      analytics.track('Checkout Step Viewed', {
+        ecomm_pagetype: 'cart',
         checkout_id: '<%= @order.number %>',
         step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
       });
-      
+
     }
   </script>
 <% end %>

@@ -4,9 +4,7 @@ module Spree
       {
         product_id: product.sku,
         sku: product.sku,
-        category: product.category.try(:name),
         name: product.name,
-        brand: product.brand.try(:name),
         price: product.price.to_f,
         currency: current_currency,
         url: product_url(product),
