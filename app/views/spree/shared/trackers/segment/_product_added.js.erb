@@ -3,7 +3,7 @@
       <script>
         if (typeof analytics !== 'undefined') {
           analytics.track('Product Added', <%= product_for_segment(@variant.product, cart_id: @order.number) %>);
-          analytics.page('Product Added', <%= product_for_segment(@variant.product, cart_id: @order.number) %>);
+          analytics.page('cart', <%= product_for_segment(@variant.product, cart_id: @order.number) %>);
 
         }
       </script>
