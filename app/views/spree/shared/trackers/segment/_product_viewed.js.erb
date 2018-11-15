@@ -10,7 +10,7 @@
         price: <%= @product.price.to_f %>,
         currency: '<%= current_currency %>',
         url: '<%= product_url(@product) %>',
-        image_url:<% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
+        image_url: <% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
       });
 
     }
