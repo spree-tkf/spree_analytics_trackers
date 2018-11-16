@@ -13,6 +13,7 @@
         image_url: <% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
       });
 
+      analytics.page("Product Viewed");
     }
   </script>
 <% end %>
