@@ -2,11 +2,10 @@
     <script>
       if (typeof analytics !== 'undefined') {
 
-        analytics.track('Products Searched', {
+        analytics.page('Products Searched', {
           query: '<%= params[:keywords] %>',
         });
 
-        analytics.page("Product Searched");
 
       }
     </script>

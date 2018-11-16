@@ -5,13 +5,13 @@
 
       <% if (@order.checkout_steps.index(@order.state) == 0) %>
 
-        analytics.track('Checkout Step Viewed', {
+        analytics.page('Checkout Step Viewed', {
           ecomm_pagetype: 'cart',
           checkout_id: '<%= @order.number %>',
           step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
         });
 
-        analytics.track('Checkout Started', {
+        analytics.page('Checkout Started', {
           order_id: '<%= @order.number %>',
           value: <%= @order.total %>,
           revenue: <%= @order.total - @order.tax_total - @order.shipment_total %>,
@@ -37,18 +37,18 @@
 
       <% if (@order.checkout_steps.index(@order.state) >= 1) %>
 
-        analytics.track('Checkout Step Completed', {
+        analytics.page('Checkout Step Completed', {
           checkout_id: '<%= @order.number %>',
           step: '<%= @order.checkout_steps.index(@order.state) %>'
         });
 
-        analytics.track('Checkout Step Viewed', {
+        analytics.page('Checkout Step Viewed', {
           ecomm_pagetype: 'cart',
           checkout_id: '<%= @order.number %>',
           step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
         });
 
-        analytics.track('Order Updated', {
+        analytics.page('Order Updated', {
           order_id: '<%= @order.number %>',
           total: <%= @order.total %>,
           revenue: <%= @order.total - @order.tax_total - @order.shipment_total %>,
@@ -70,8 +70,6 @@
           ]
         });
       <% end %>
-
-      analytics.page("Checkout Step Viewed");
 
     }
   </script>

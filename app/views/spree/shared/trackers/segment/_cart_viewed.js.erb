@@ -2,7 +2,7 @@
   <script>
     if (typeof analytics !== 'undefined') {
 
-      analytics.track('Cart Viewed', {
+      analytics.page('Cart Viewed', {
         ecomm_pagetype: 'cart',
         cart_id: '<%= @order.number %>',
         products: [
@@ -11,8 +11,6 @@
         <% end %>
         ]
       });
-
-      analytics.page("Cart Viewed");
 
 
     }

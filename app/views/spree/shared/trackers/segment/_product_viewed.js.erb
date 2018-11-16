@@ -2,7 +2,7 @@
   <script>
     if (typeof analytics !== 'undefined') {
 
-      analytics.track('Product Viewed', {
+      analytics.page('Product Viewed', {
         ecomm_pagetype: 'product',
         product_id: '<%= @product.sku %>',
         sku: '<%= @product.sku %>',
@@ -13,7 +13,7 @@
         image_url: <% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
       });
 
-      analytics.page("Product Viewed");
-    }
+
+      }
   </script>
 <% end %>

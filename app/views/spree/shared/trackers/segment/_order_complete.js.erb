@@ -2,7 +2,7 @@
     <script>
       if (typeof analytics !== 'undefined') {
 
-        analytics.track('Order Completed', {
+        analytics.page('Order Completed', {
           ecomm_pagetype: 'purchase',
           order_id: '<%= @order.number %>',
           total: <%= @order.total %>,
@@ -25,7 +25,6 @@
           ]
         });
 
-        analytics.page("Order Completed");
       }
     </script>
 <% end %>
