@@ -6,7 +6,7 @@
           ecomm_pagetype: 'purchase',
           order_id: '<%= @order.number %>',
           total: <%= @order.total %>,
-          revenue: <%= @order.total  - @order.tax_total - @order.shipment_total %>,
+          revenue: <%= @order.total - @order.tax_total - @order.shipment_total %>,
           shipping: <%= @order.shipment_total %>,
           tax: <%= @order.tax_total %>,
           discount: <%= @order.promo_total %>,
