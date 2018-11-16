@@ -3,16 +3,27 @@
     if (typeof analytics !== 'undefined') {
 
       analytics.track('Product Viewed', {
-        ecomm_pagetype: 'product',
-        product_id: '<%= @product.sku %>',
-        sku: '<%= @product.sku %>',
-        name: '<%= @product.name %>',
-        price: <%= @product.price.to_f %>,
-        currency: '<%= current_currency %>',
-        url: '<%= product_url(@product) %>',
-        image_url: <% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
-      });
+          ecomm_pagetype: 'product',
+          product_id: '<%= @product.sku %>',
+          sku: '<%= @product.sku %>',
+          name: '<%= @product.name %>',
+          price: <%= @product.price.to_f %>,
+          currency: '<%= current_currency %>',
+          url: '<%= product_url(@product) %>',
+          image_url: <% @product.images.first(1).each do |i| %>'<%= main_app.url_for(i.url(:product)) %>'<% end %>
+        });
 
       }
   </script>
+
+
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('event', 'page_view', {'send_to': 'AW-992696821',
+       'ecomm_pagetype': 'product',
+      });
+    </script>
+
 <% end %>
