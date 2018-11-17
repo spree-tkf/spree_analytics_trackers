@@ -2,6 +2,14 @@
 <!-- Event snippet for view_item -->
   <script>
     gtag('event', 'view_item', {
+  <% if tracker = Spree::Tracker.current(:google_analytics) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+      'id': '<%= @product.sku %>',
+      'name': '<%= @product.name %>',
+      'price': '<%= @product.price %>',
+      'ecomm_prodid': '<%= @product.sku %>',
+      'ecomm_pagetype': 'product',
+      'ecomm_totalvalue': '<%= @product.price %>',
+
       'items': [
         {
           'id': '<%= @product.sku %>',
@@ -18,9 +26,9 @@
   <script>
     gtag('event', 'page_view', {
     <% if tracker = Spree::Tracker.current(:google_ads_account_number) %> 'send_to': 'AW-<%= tracker.analytics_id %><% end %>',
-     'ecomm_prodid': '<%= @product.sku %>',
-     'ecomm_pagetype': 'product',
-     'ecomm_totalvalue': '<%= @product.price %>'
+      'ecomm_prodid': '<%= @product.sku %>',
+      'ecomm_pagetype': 'product',
+      'ecomm_totalvalue': '<%= @product.price %>'
     });
   </script>
 <% end %>
