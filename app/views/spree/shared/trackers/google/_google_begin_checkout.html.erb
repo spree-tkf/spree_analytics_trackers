@@ -1,13 +1,10 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
 <!-- Global site tag (gtag.js) - Google Analytics -->
   <script>
-    gtag('event', 'checkout_progress', {
+    gtag('event', 'begin_checkout', {
       'items': [
           <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
-          ]
-    });
-    gtag('event', 'set_checkout_option', {
-      'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
+        ]
     });
   </script>
 <% end %>
