@@ -21,22 +21,22 @@
         </script>
     <% end %>
 
-    <% if tracker = Spree::Tracker.current(:google_ads_account_number) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
+    <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
     <!-- EVENT: conversion - FOR: Adwords Conversion Tracking -->
         <script>
           gtag('event', 'conversion', {
-        <% if tracker = Spree::Tracker.current(:google_ads_account_number) %>'send_to': 'AW-<%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
+        <% if tracker = Spree::Tracker.current(:google_ads) %>'send_to': '<%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
               'value': <%= @order.total %>,
               'transaction_id': '<%= j @order.number %>'
           });
         </script>
     <% end %>
 
-    <% if tracker = Spree::Tracker.current(:google_ads_account_number) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
+    <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
     <!-- Event snippet for Example dynamic remarketing page -->
           <script>
             gtag('event', 'purchase', {
-            <% if tracker = Spree::Tracker.current(:google_ads_account_number) %> 'send_to': 'AW-<%= tracker.analytics_id %><% end %>',
+            <% if tracker = Spree::Tracker.current(:google_ads) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
              'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
              'ecomm_pagetype': 'purchase',
              'ecomm_totalvalue': '<%= @order.total %>'
