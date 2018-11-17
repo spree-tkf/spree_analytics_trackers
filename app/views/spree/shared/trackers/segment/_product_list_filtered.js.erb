@@ -2,6 +2,7 @@
     <script>
       if (typeof analytics !== 'undefined') {
 
+        analytics.page("Product List Filtered");
         analytics.track('Product List Filtered', {
           filters: [
             <% params[:search].to_unsafe_h.each do |type, value| %>

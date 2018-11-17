@@ -2,6 +2,7 @@
     <script>
       if (typeof analytics !== 'undefined') {
 
+        analytics.page("Order Completed");
         analytics.track('Order Completed', {
           ecomm_pagetype: 'purchase',
           order_id: '<%= @order.number %>',
@@ -26,13 +27,5 @@
         });
 
       }
-    </script>
-
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('event', 'page_view', {'send_to': 'AW-992696821',
-       'ecomm_pagetype': 'purchase',
-      });
     </script>
 <% end %>

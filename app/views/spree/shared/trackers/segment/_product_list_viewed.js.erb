@@ -2,6 +2,7 @@
   <script>
     if (typeof analytics !== 'undefined') {
 
+      analytics.page("Product List Viewed");
       analytics.track('Product List Viewed', {
         category: '<%= @taxon.try(:name) %>',
         products: [
@@ -12,13 +13,5 @@
       });
 
     }
-  </script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('event', 'page_view', {'send_to': 'AW-992696821',
-     'ecomm_pagetype': 'category',
-    });
   </script>
 <% end %>

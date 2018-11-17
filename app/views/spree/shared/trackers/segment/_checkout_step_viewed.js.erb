@@ -2,7 +2,6 @@
   <script>
     if (typeof analytics !== 'undefined') {
 
-
       <% if (@order.checkout_steps.index(@order.state) == 0) %>
 
         analytics.track('Checkout Step Viewed', {
@@ -11,6 +10,7 @@
           step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
         });
 
+        analytics.page("Checkout Started");
         analytics.track('Checkout Started', {
           order_id: '<%= @order.number %>',
           value: <%= @order.total %>,
@@ -48,6 +48,7 @@
           step: '<%= (@order.checkout_steps.index(@order.state) + 1) %>'
         });
 
+        analytics.page("Order Updated");
         analytics.track('Order Updated', {
           order_id: '<%= @order.number %>',
           total: <%= @order.total %>,
@@ -72,13 +73,5 @@
       <% end %>
 
     }
-  </script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('event', 'page_view', {'send_to': 'AW-992696821',
-     'ecomm_pagetype': 'cart',
-    });
   </script>
 <% end %>
