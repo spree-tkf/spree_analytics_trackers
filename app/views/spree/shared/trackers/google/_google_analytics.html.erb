@@ -7,7 +7,7 @@
       gtag('js', new Date());
       gtag('config', '<%= tracker.analytics_id %>');
       <% if tracker = Spree::Tracker.current(:google_ads) %>
-      gtag('config', '<%= tracker.analytics_id %>');
+      gtag('config', '<%= tracker.analytics_id %>', {'send_page_view': false});
       <% end %>
     </script>
 <% end %>
