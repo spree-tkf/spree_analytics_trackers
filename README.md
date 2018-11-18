@@ -15,10 +15,12 @@ To use Google Ads Conversion tracking create a new tracker in Spree/Admin/Config
 
 Next locate your Google Ads conversion Label, and create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Google ads conversion label: in the Analytics ID section set this to your Google Ads Conversion Label, an example would be: ```bKTaNtD-uYLAsjaEPWLSDdndwkD```
 
-
-
 ## Bing UET (with conversion tracking)
 To use Bing UET with conversion tracking create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Bing uet, and enter your Bing UET tag id into the Analytics ID section. An example of this would be: ```12345678```
+
+### NOTE
+Only create one of each analytics type.
+
 
 ## Segment
 Via Segment.com you can plug-in also a lot of additional vendors and services like:
