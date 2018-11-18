@@ -1,15 +1,11 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
-<!-- Event snippet for view_item -->
+<!-- Event snippet for Google Analytics -->
   <script>
     gtag('event', 'view_item', {
       'send_to': 'analytics_tag',
       'id': '<%= @product.sku %>',
       'name': '<%= @product.name %>',
       'price': '<%= @product.price %>',
-      'ecomm_prodid': '<%= @product.sku %>',
-      'ecomm_pagetype': 'product',
-      'ecomm_totalvalue': '<%= @product.price %>',
-
       'items': [
         {
           'id': '<%= @product.sku %>',
@@ -22,10 +18,13 @@
 <% end %>
 
 <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
-<!-- Event snippet for Example dynamic remarketing page -->
+<!-- Event snippet for dynamic remarketing -->
   <script>
-    gtag('event', 'page_view', {
-      'send_to': 'ads_tag',
+    gtag('event', 'remarketing', {
+      'send_to': [
+        'ads_tag',
+        'analytics_tag'
+      ],
       'ecomm_prodid': '<%= @product.sku %>',
       'ecomm_pagetype': 'product',
       'ecomm_totalvalue': '<%= @product.price %>'
