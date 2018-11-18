@@ -3,7 +3,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script>
           gtag('event', 'purchase', {
-        <% if tracker = Spree::Tracker.current(:google_analytics) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+          'send_to': 'analytics_tag',
           'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
           'ecomm_pagetype': 'purchase',
           'ecomm_totalvalue': '<%= @order.total %>',
@@ -25,7 +25,7 @@
     <!-- EVENT: conversion - FOR: Adwords Conversion Tracking -->
         <script>
           gtag('event', 'conversion', {
-        <% if tracker = Spree::Tracker.current(:google_ads) %>'send_to': '<%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
+              'send_to': 'ads_tag',
               'value': <%= @order.total %>,
               'currency': '<%= current_currency %>',
               'transaction_id': '<%= j @order.number %>'
@@ -37,7 +37,7 @@
     <!-- Event snippet for Example dynamic remarketing page -->
           <script>
             gtag('event', 'purchase', {
-            <% if tracker = Spree::Tracker.current(:google_ads) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+             'send_to': 'ads_tag',
              'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
              'ecomm_pagetype': 'purchase',
              'ecomm_totalvalue': '<%= @order.total %>'

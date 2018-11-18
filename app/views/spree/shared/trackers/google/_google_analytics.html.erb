@@ -5,9 +5,21 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '<%= tracker.analytics_id %>');
+      gtag('config', '<%= tracker.analytics_id %>', {
+            'groups': 'analytics_tag',
+            'custom_map': {
+              'dimension1': 'ecomm_prodid',
+              'dimension2': 'ecomm_pagetype',
+              'dimension3': 'ecomm_totalvalue',
+              'dimension4': 'ecomm_category'
+            }
+      });
+
       <% if tracker = Spree::Tracker.current(:google_ads) %>
-      gtag('config', '<%= tracker.analytics_id %>', {'send_page_view': false});
+      gtag('config', '<%= tracker.analytics_id %>', {
+        'groups': 'ads_tag',
+        'send_page_view': false
+      });
       <% end %>
     </script>
 <% end %>

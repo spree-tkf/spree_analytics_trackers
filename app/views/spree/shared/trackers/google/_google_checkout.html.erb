@@ -2,7 +2,7 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
   <script>
     gtag('event', 'checkout_progress', {
-  <% if tracker = Spree::Tracker.current(:google_analytics) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+      'send_to': 'analytics_tag',
       'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
       'ecomm_pagetype': 'cart',
       'ecomm_totalvalue': '<%= @order.total %>',
@@ -11,7 +11,7 @@
           ]
     });
     gtag('event', 'set_checkout_option', {
-      <% if tracker = Spree::Tracker.current(:google_analytics) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+      'send_to': 'analytics_tag',
       'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
     });
   </script>
@@ -21,7 +21,7 @@
 <!-- Event snippet for Example dynamic remarketing page -->
   <script>
     gtag('event', 'page_view', {
-    <% if tracker = Spree::Tracker.current(:google_ads) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+     'send_to': 'ads_tag',
      'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
      'ecomm_pagetype': 'cart',
      'ecomm_totalvalue': '<%= @order.total %>'

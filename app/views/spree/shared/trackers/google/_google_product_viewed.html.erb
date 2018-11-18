@@ -2,7 +2,7 @@
 <!-- Event snippet for view_item -->
   <script>
     gtag('event', 'view_item', {
-  <% if tracker = Spree::Tracker.current(:google_analytics) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+      'send_to': 'analytics_tag',
       'id': '<%= @product.sku %>',
       'name': '<%= @product.name %>',
       'price': '<%= @product.price %>',
@@ -25,7 +25,7 @@
 <!-- Event snippet for Example dynamic remarketing page -->
   <script>
     gtag('event', 'page_view', {
-    <% if tracker = Spree::Tracker.current(:google_ads) %> 'send_to': '<%= tracker.analytics_id %><% end %>',
+      'send_to': 'ads_tag',
       'ecomm_prodid': '<%= @product.sku %>',
       'ecomm_pagetype': 'product',
       'ecomm_totalvalue': '<%= @product.price %>'
