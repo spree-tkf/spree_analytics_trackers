@@ -1,0 +1,10 @@
+<% if order_just_completed?(@order) %>
+  <% if tracker = Spree::Tracker.current(:bing_uet) %>
+    <script>
+      function reportCustomEventWithVariableRevenue() {
+        window.uetq = window.uetq || []; window.uetq.push({ 'ea': 'purchase', 'ev': <%= @order.total %>, 'gv': <%= (@order.total - @order.ship_total ) - @order.tax_total %>, 'gc': '<%= current_currency %>' });
+      }
+      window.onload = reportCustomEventWithVariableRevenue;
+    </script>
+  <% end %>
+<% end %>
