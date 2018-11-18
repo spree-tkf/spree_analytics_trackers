@@ -1,18 +1,33 @@
-<% if tracker = Spree::Tracker.current(:google_analytics) %>
-<!-- Event snippet for Google Analytics -->
-  <script>
-    gtag('event', 'checkout_progress', {
-      'send_to': 'analytics_tag',
-      'items': [
-          <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
-          ]
-    });
-    gtag('event', 'set_checkout_option', {
-      'send_to': 'analytics_tag',
-      'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>
-    });
-  </script>
+<% if (@order.checkout_steps.index(@order.state) == 0) %>
+      <% if tracker = Spree::Tracker.current(:google_analytics) %>
+      <!-- Event snippet for Google Analytics -->
+        <script>
+          gtag('event', 'checkout_progress', {
+            'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
+            'send_to': 'analytics_tag',
+            'items': [
+                <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+                ]
+          });
+        </script>
+      <% end %>
 <% end %>
+
+<% if (@order.checkout_steps.index(@order.state) >= 1) %>
+      <% if tracker = Spree::Tracker.current(:google_analytics) %>
+      <!-- Event snippet for Google Analytics -->
+        <script>
+          gtag('event', 'checkout_progress', {
+            'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
+            'send_to': 'analytics_tag',
+            'items': [
+                <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+                ]
+          });
+        </script>
+      <% end %>
+<% end %>
+
 
 <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
 <!-- Event snippet for dynamic remarketing -->
