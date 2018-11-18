@@ -3,8 +3,24 @@
 [![Build Status](https://travis-ci.org/spree-contrib/spree_analytics_trackers.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_analytics_trackers)
 
 This extensions adds support for [Google Analytics Enhanced Ecommerce](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
+This extensions adds support for [Bing UET](https://advertise.bingads.microsoft.com/en-gb/solutions/audience-targeting/universal-event-tracking)
 and [Segment Ecommerce](https://segment.com/docs/spec/ecommerce/v2/) tracking to [Spree Commerce](https://spreecommerce.org) stores version 3.5.0 or later.
 
+
+## Google Analytics
+To use Google Analytics simply create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Google analytics, and enter your Google Analytics ID into the Analytics ID section. An example of this would be: ```UA-12345678-9```
+
+## Google Ads
+To use Google Ads Conversion tracking create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Google ads: in the Analytics ID section set this to your Google Ads account ID, an example would be: ```AW-12345678```
+
+Next locate your Google Ads conversion Label, and create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Google ads conversion label: in the Analytics ID section set this to your Google Ads Conversion Label, an example would be: ```bKTaNtD-uYLAsjaEPWLSDdndwkD```
+
+
+
+## Bing UET (with conversion tracking)
+To use Bing UET with conversion tracking create a new tracker in Spree/Admin/Configurations/Analytics Trackers select Bing uet, and enter your Bing UET tag id into the Analytics ID section. An example of this would be: ```12345678```
+
+## Segment
 Via Segment.com you can plug-in also a lot of additional vendors and services like:
 * Mixpanel
 * Kissmetrics
