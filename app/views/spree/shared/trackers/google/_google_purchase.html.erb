@@ -21,7 +21,7 @@
     <!-- Event snippet for Google Ads conversion tracking -->
         <script>
           gtag('event', 'conversion', {
-              'send_to': 'ads_tag',
+              'send_to': '<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
               'value': <%= @order.total %>,
               'currency': '<%= current_currency %>',
               'transaction_id': '<%= j @order.number %>'
