@@ -1,5 +1,6 @@
-<% if order_just_completed?(@order) %>
+<% if order_just_completed?(@order) && cookie_consent == true %>
     <% if tracker = Spree::Tracker.current(:google_analytics) %>
+
     <!-- Event snippet for Google Analytics -->
         <script>
           gtag('event', 'purchase', {
@@ -15,22 +16,19 @@
             ]
           });
         </script>
-    <% end %>
 
-    <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
     <!-- Event snippet for dynamic remarketing -->
           <script>
             gtag('event', 'remarketing', {
               'send_to': [
-                'ads_tag',
-                'analytics_tag'
+              <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
+        <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag'<% end %>
               ],
              'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
              'ecomm_pagetype': 'purchase',
              'ecomm_totalvalue': '<%= (@order.total - @order.ship_total ) - @order.tax_total %>'
             });
           </script>
-    <% end %>
 
     <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
     <!-- Event snippet for Google Ads conversion tracking -->
@@ -43,4 +41,6 @@
           });
         </script>
     <% end %>
+    
+  <% end %>
 <% end %>

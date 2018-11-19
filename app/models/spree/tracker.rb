@@ -1,6 +1,6 @@
 module Spree
   class Tracker < Spree::Base
-    TRACKING_ENGINES = %i(google_analytics segment google_ads google_ads_conversion_label bing_uet).freeze
+    TRACKING_ENGINES = %i(google_analytics segment google_ads google_ads_conversion_label bing_uet cookies_bar).freeze
     enum engine: TRACKING_ENGINES
 
     after_commit :clear_cache

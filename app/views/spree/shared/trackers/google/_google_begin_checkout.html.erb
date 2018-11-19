@@ -1,26 +1,28 @@
-<% if tracker = Spree::Tracker.current(:google_analytics) %>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-  <script>
-    gtag('event', 'begin_checkout', {
-      'send_to': 'analytics_tag',
-      'items': [
-          <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
-        ]
-    });
-  </script>
-<% end %>
+<% if cookie_consent == true %>
+  <% if tracker = Spree::Tracker.current(:google_analytics) %>
 
-<% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
-<!-- Event snippet for dynamic remarketing -->
-  <script>
-    gtag('event', 'remarketing', {
-      'send_to': [
-        'ads_tag',
-        'analytics_tag'
-      ],
-     'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
-     'ecomm_pagetype': 'cart',
-     'ecomm_totalvalue': '<%= @order.total %>'
-    });
-  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+      gtag('event', 'begin_checkout', {
+        'send_to': 'analytics_tag',
+        'items': [
+            <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+          ]
+      });
+    </script>
+
+  <!-- Event snippet for dynamic remarketing -->
+    <script>
+      gtag('event', 'remarketing', {
+        'send_to': [
+            <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
+      <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag'<% end %>
+        ],
+       'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>', <% end %>],
+       'ecomm_pagetype': 'cart',
+       'ecomm_totalvalue': '<%= @order.total %>'
+      });
+    </script>
+
+  <% end %>
 <% end %>

@@ -1,4 +1,4 @@
-<% if order_just_completed?(@order) %>
+<% if order_just_completed?(@order) && cookie_consent == true %>
   <% if tracker = Spree::Tracker.current(:bing_uet) %>
     <script>
       function reportCustomEventWithVariableRevenue() {
