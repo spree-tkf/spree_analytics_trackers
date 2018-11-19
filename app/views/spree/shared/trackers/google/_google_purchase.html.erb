@@ -1,4 +1,4 @@
-<% if order_just_completed?(@order) && cookie_consent == true %>
+<% if order_just_completed?(@order) %>
     <% if tracker = Spree::Tracker.current(:google_analytics) %>
 
     <!-- Event snippet for Google Analytics -->
@@ -41,6 +41,6 @@
           });
         </script>
     <% end %>
-    
+
   <% end %>
 <% end %>

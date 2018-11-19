@@ -1,5 +1,4 @@
-<% if cookie_consent == true %>
-  <% if tracker = Spree::Tracker.current(:google_analytics) %>
+<% if tracker = Spree::Tracker.current(:google_analytics) %>
 
   <!-- Event snippet for Google Analytics -->
     <script>
@@ -24,6 +23,5 @@
        'ecomm_totalvalue': '<%= @order.total %>'
       });
     </script>
-    
-  <% end %>
+
 <% end %>

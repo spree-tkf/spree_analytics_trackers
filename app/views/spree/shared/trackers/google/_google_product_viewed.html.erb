@@ -1,5 +1,4 @@
-<% if cookie_consent == true %>
-  <% if tracker = Spree::Tracker.current(:google_analytics) %>
+<% if tracker = Spree::Tracker.current(:google_analytics) %>
 
   <!-- Event snippet for Google Analytics -->
     <script>
@@ -31,5 +30,4 @@
       });
     </script>
 
-  <% end %>
 <% end %>
