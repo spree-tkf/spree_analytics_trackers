@@ -1,5 +1,6 @@
 <% if order_just_completed?(@order) %>
     <% if tracker = Spree::Tracker.current(:google_analytics) %>
+    
     <!-- Event snippet for Google Analytics -->
         <script>
           gtag('event', 'purchase', {
