@@ -10,7 +10,7 @@
        'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
        'ecomm_pagetype': 'cart',
        'ecomm_totalvalue': '<%= @order.total %>',
-        'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
+       'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
         'items': [
                     <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
         ]
