@@ -8,7 +8,7 @@
           'transaction_id': '<%= j @order.number %>',
           'affiliation': '<%= current_store.name %>',
           'value': <%= (@order.total - @order.ship_total ) - @order.tax_total %>,
-          'currency': '<%= current_currency %>',
+          'currency': '<%= @order.currency %>',
           'tax': <%= @order.tax_total %>,
           'shipping':<%= @order.ship_total %>,
           'items': [
@@ -36,7 +36,7 @@
           gtag('event', 'conversion', {
               'send_to': '<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
               'value': <%= (@order.total - @order.ship_total ) - @order.tax_total %>,
-              'currency': '<%= current_currency %>',
+              'currency': '<%= @order.currency %>',
               'transaction_id': '<%= j @order.number %>'
           });
         </script>
