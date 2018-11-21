@@ -17,14 +17,15 @@
         'content_type': 'product',
         'event_category': 'Product Viewed',
         'event_label': 'Viewed <%= @product.name %>',
-
         'send_to': [
         <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
           ],
           'items': [
-          {'id': '<%= @product.sku %>',
+          {
+          'id': '<%= @product.sku %>',
           'name': '<%= @product.name %>',
-          'price': <%= @product.price.to_f %>}
+          'price': <%= @product.price.to_f %>
+        }
         ],
       });
 
@@ -33,11 +34,13 @@
       <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
             'items': [
-            {'id': '<%= @product.sku %>',
+            {
+            'id': '<%= @product.sku %>',
             'name': '<%= @product.name %>',
-            'price': <%= @product.price.to_f %>}
+            'price': '<%= @product.price.to_f %>'
+          }
           ],
       });
   </script>
-  
+
 <% end %>
