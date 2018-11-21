@@ -5,7 +5,7 @@
     'category': '<%= j line_item.category.try(:name) %>',
     'brand': '<%= j line_item.brand.try(:name) %>',
     'variant': '<%= j line_item.options_text %>',
-    'price': '<%= line_item.price %>',
-    'quantity': '<%= line_item.quantity %>'
+    'price': <%= line_item.price.to_f %>,
+    'quantity': <%= line_item.quantity.to_f %>
   },
 <% end %>

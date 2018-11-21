@@ -1,39 +1,42 @@
 <% if order_just_completed?(@order) %>
     <% if tracker = Spree::Tracker.current(:google_analytics) %>
-    
-    <!-- Event snippet for Google Analytics -->
+
         <script>
           gtag('event', 'purchase', {
+          'event_category': 'Enhanced Ecommerce',
           'send_to': 'analytics_tag',
-          'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
-          'ecomm_pagetype': 'purchase',
-          'ecomm_totalvalue': '<%= (@order.total - @order.ship_total ) - @order.tax_total %>',
           'transaction_id': '<%= j @order.number %>',
           'affiliation': '<%= current_store.name %>',
-          'value': <%= (@order.total - @order.ship_total ) - @order.tax_total %>,
+          'value': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
           'currency': '<%= @order.currency %>',
-          'tax': <%= @order.tax_total %>,
-          'shipping':<%= @order.ship_total %>,
+          'tax': <%= @order.tax_total.to_f %>,
+          'shipping':<%= @order.ship_total.to_f %>,
           'items': [
               <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
             ]
           });
-        </script>
 
-    <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
-    <!-- Event snippet for Google Ads conversion tracking -->
-        <script>
-          gtag('event', 'conversion', {
-              'send_to': '<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
-              'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
-              'ecomm_pagetype': 'purchase',
-              'ecomm_totalvalue': '<%= (@order.total - @order.ship_total ) - @order.tax_total %>',
-              'value': <%= (@order.total - @order.ship_total ) - @order.tax_total %>,
-              'currency': '<%= @order.currency %>',
-              'transaction_id': '<%= j @order.number %>'
+          gtag('event', 'remarketing', {
+            'send_to': [
+          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
+          <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+            ],
+            'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
+            'ecomm_pagetype': 'purchase',
+            'ecomm_totalvalue': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
           });
-        </script>
-    <% end %>
+
+
+          <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
+          gtag('event', 'conversion', {
+            'send_to': '<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
+            'value': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
+            'currency': '<%= @order.currency %>',
+            'transaction_id': '<%= j @order.number %>'
+          });
+          <% end %>
+      </script>
+
 
   <% end %>
 <% end %>
