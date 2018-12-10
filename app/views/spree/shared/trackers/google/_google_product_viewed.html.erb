@@ -24,7 +24,6 @@
           {
             'id': '<%= @product.sku %>',
             'name': '<%= @product.name %>',
-            'brand': '<%= @product.property('Brand') %>',
             'category': '<%= @taxon.try(:name) %>',
             'price': '<%= @product.price.to_f %>'
         }
@@ -39,7 +38,6 @@
             {
             'id': '<%= @product.sku %>',
             'name': '<%= @product.name %>',
-            'brand': '<%= @product.property('Brand') %>',
             'category': '<%= @taxon.try(:name) %>',
             'price': '<%= @product.price.to_f %>'
           }
