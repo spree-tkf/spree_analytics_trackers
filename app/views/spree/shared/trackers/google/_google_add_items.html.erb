@@ -2,8 +2,6 @@
   {
     'id': '<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',
     'name': '<%= j line_item.name %>',
-    'category': '<%= j line_item.category.try(:name) %>',
-    'brand': '<%= j line_item.brand.try(:name) %>',
     'variant': '<%= j line_item.options_text %>',
     'quantity': <%= line_item.quantity %>,
     'price': '<%= line_item.price.to_f %>'

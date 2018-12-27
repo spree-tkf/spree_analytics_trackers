@@ -1,6 +1,24 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
 
     <script>
+      gtag('event', 'view_item', {
+        'content_type': 'product',
+        'event_category': 'Product Viewed',
+        'event_label': 'Viewed <%= @product.name %>',
+        'send_to': [
+      <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+        ],
+            'items': [
+            {
+            'id': '<%= @product.sku %>',
+            'name': '<%= @product.name %>',
+            'brand': '<%= @product.property('Brand') %>',
+            'category': '<%= @taxon.try(:name) %>',
+            'price': '<%= @product.price.to_f %>'
+          }
+          ],
+      });
+
       gtag('event', 'remarketing', {
         'send_to': [
       <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
@@ -10,38 +28,6 @@
         'ecomm_pagetype': 'product',
         'ecomm_totalvalue': <%= @product.price.to_f %>,
         'ecomm_catagory': '<%= @taxon.try(:name) %>'
-      });
-
-
-      gtag('event', 'select_content', {
-        'content_type': 'product',
-        'event_category': 'Product Viewed',
-        'event_label': 'Viewed <%= @product.name %>',
-        'send_to': [
-        <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-          ],
-          'items': [
-          {
-            'id': '<%= @product.sku %>',
-            'name': '<%= @product.name %>',
-            'category': '<%= @taxon.try(:name) %>',
-            'price': '<%= @product.price.to_f %>'
-        }
-        ],
-      });
-
-      gtag('event', 'view_item', {
-        'send_to': [
-      <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-        ],
-            'items': [
-            {
-            'id': '<%= @product.sku %>',
-            'name': '<%= @product.name %>',
-            'category': '<%= @taxon.try(:name) %>',
-            'price': '<%= @product.price.to_f %>'
-          }
-          ],
       });
   </script>
 
