@@ -3,7 +3,7 @@
     <script>
       gtag('event', 'view_item', {
         'content_type': 'product',
-        'event_category': 'Product Viewed',
+        'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed <%= @product.name %>',
         'send_to': [
       <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
@@ -20,6 +20,7 @@
       });
 
       gtag('event', 'remarketing', {
+        'event_category': 'Remarketing Data',
         'send_to': [
       <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
       <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
