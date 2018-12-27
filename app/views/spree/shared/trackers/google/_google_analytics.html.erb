@@ -15,13 +15,6 @@
                 'dimension4': 'ecomm_catagory'
               }
         });
-
-        <% if tracker = Spree::Tracker.current(:google_ads) %>
-        gtag('config', '<%= tracker.analytics_id %>', {
-          'groups': 'ads_tag',
-          'send_page_view': false,
-        });
-        <% end %>
       </script>
 
   <% end %>

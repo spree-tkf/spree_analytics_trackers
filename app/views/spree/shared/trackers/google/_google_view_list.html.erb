@@ -3,6 +3,8 @@
       gtag('event', 'view_item_list', {
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed Collection',
+        'ecomm_pagetype': 'category',
+        'ecomm_catagory': '<%= @taxon.try(:name) %>',
         'send_to': [
         <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
@@ -12,16 +14,5 @@
         <% end %>
         ]
       });
-
-      gtag('event', 'remarketing', {
-        'event_category': 'Remarketing Data',
-        'send_to': [
-      <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-      <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-        ],
-        'ecomm_pagetype': 'category',
-        'ecomm_catagory': '<%= @taxon.try(:name) %>'
-      });
-
     </script>
 <% end %>
