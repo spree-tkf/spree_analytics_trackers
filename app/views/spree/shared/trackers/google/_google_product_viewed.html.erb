@@ -2,6 +2,7 @@
 
     <script>
       gtag('event', 'view_item', {
+        'send_to': 'analytics_tag',
         'content_type': 'product',
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed <%= @product.name %>',
@@ -9,10 +10,7 @@
         'ecomm_pagetype': 'product',
         'ecomm_totalvalue': <%= @product.price.to_f %>,
         'ecomm_catagory': '<%= @taxon.try(:name) %>',
-        'send_to': [
-            <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-            ],
-            'items': [
+        'items': [
             {
             'id': '<%= @product.sku %>',
             'name': '<%= @product.name %>',
@@ -20,7 +18,8 @@
             'category': '<%= @taxon.try(:name) %>',
             'price': '<%= @product.price.to_f %>'
           }
-          ],
+        ]
+
       });
   </script>
 

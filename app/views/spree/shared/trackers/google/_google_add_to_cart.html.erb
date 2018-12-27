@@ -1,13 +1,11 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
     <script>
       gtag('event', 'add_to_cart', {
+        'send_to': 'analytics_tag',
         'event_category': 'Enhanced Ecommerce',
         'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
         'ecomm_pagetype': 'cart',
         'ecomm_totalvalue': <%= @order.total.to_f %>,
-        'send_to': [
-        <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-        ],
         'items': [
         <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
         ]

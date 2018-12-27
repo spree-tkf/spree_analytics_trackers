@@ -2,9 +2,9 @@
     <% if tracker = Spree::Tracker.current(:google_analytics) %>
         <script>
           gtag('event', 'purchase', {
+            'send_to': 'analytics_tag',
             'event_category': 'Enhanced Ecommerce',
             'event_label': 'Viewed Compleated Order Page',
-            'send_to': 'analytics_tag',
             'transaction_id': '<%= j @order.number %>',
             'affiliation': '<%= current_store.name %>',
             'value': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
