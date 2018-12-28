@@ -1,11 +1,11 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
     <script>
+      
       gtag('event', 'view_item_list', {
-        'send_to': 'analytics_tag',
+
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed Collection',
-        'ecomm_pagetype': 'category',
-        'ecomm_catagory': '<%= @taxon.try(:name) %>',
+
         'items': [
         <% products.each_with_index do |product, index| %>
           <%= product_for_google(product) %>,
