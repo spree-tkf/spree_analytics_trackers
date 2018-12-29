@@ -6,7 +6,7 @@
 
         'ecomm_prodid': '<%= @product.sku %>',
         'ecomm_pagetype': 'product',
-        'ecomm_totalvalue': <%= @product.price.to_f %>,
+        'ecomm_totalvalue': <%= @product.price_in(current_currency).amount.to_f %>,
         'ecomm_catagory': '<%= @taxon.try(:name) %>'
 
       });
@@ -22,7 +22,7 @@
             'name': '<%= @product.name %>',
             'brand': '<%= @product.property('Brand') %>',
             'category': '<%= @taxon.try(:name) %>',
-            'price': '<%= @product.price.to_f %>'
+            'price': '<%= @product.price_in(current_currency).amount.to_f %>'
           }
         ]
 
