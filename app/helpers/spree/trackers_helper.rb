@@ -4,6 +4,7 @@ module Spree
     def product_for_google(product, optional = {})
       {
         id: product.sku,
+        brand: product.property('Brand'),
         name: product.name,
         price: product.price,
       }.tap do |hash|

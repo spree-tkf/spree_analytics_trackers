@@ -1,6 +1,7 @@
 <% @order.line_items.each do |line_item| %>
   {
     'id': '<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',
+    'brand': '<%= j line_item.product.property('Brand') %>',
     'name': '<%= j line_item.name %>',
     'variant': '<%= j line_item.options_text %>',
     'quantity': <%= line_item.quantity %>,
