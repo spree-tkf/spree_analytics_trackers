@@ -6,6 +6,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '<%= tracker.analytics_id %>', {
+          'groups': 'analytics_tag',
         <% if ['product-details','cart', 'checkout-page', 'purchase'].include?(@body_id) %>
           'send_page_view': false,
         <% end %>
@@ -18,6 +19,13 @@
           }
 
         });
+
+        <% if tracker = Spree::Tracker.current(:google_ads) %>
+        gtag('config', '<%= tracker.analytics_id %>', {
+          'groups': 'ads_tag',
+          'send_page_view': false,
+        });
+        <% end %>
       </script>
 
   <% end %>

@@ -1,7 +1,10 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
     <script>
-      
+
       gtag('event', 'view_item_list', {
+        'send_to': [
+          <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+        ],
 
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed Collection',
