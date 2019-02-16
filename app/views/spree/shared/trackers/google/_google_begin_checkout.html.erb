@@ -15,6 +15,9 @@
       });
 
       gtag('event', 'begin_checkout', {
+        'send_to': [
+          <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+        ],
 
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed Cart',
