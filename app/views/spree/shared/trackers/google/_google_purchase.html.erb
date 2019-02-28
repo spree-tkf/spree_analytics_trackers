@@ -34,6 +34,16 @@
                 <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
             ]
           });
+
+          <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_conversion_label)%>
+          gtag('event', 'conversion', {
+            'send_to': 'AW-<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_conversion_label) %><%= tracker.analytics_id %><% end %>',
+            'value': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
+            'currency': '<%= @order.currency %>',
+            'transaction_id': '<%= j @order.number %>'
+          });
+          <% end %>
+
       </script>
   <% end %>
 <% end %>
