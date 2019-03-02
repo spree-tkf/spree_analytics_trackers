@@ -10,17 +10,36 @@
         'ecomm_totalvalue': '<%= @order.total %>'
       });
 
-      gtag('event', 'checkout_progress', {
-        'send_to': [
-          <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-        ],
-        'event_category': 'Enhanced Ecommerce',
-        'event_label': 'Viewed Checkout Step <%= (@order.checkout_steps.index(@order.state) + 1) %>',
+      <% if (@order.checkout_steps.index(@order.state) == 0) %>
 
-        'checkout_step': <%= (@order.checkout_steps.index(@order.state) + 1) %>,
-        'items': [
-        <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
-        ]
-      });
+          gtag('event', 'begin_checkout', {
+            'send_to': [
+              <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+            ],
+
+            'event_category': 'Enhanced Ecommerce',
+            'event_label': 'Begin Checkout',
+
+            'items': [
+            <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+            ]
+          });
+
+      <% else %>
+
+        gtag('event', 'checkout_progress', {
+          'send_to': [
+            <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+          ],
+          'event_category': 'Enhanced Ecommerce',
+          'event_label': 'Viewed Checkout Step <%= @order.checkout_steps.index(@order.state) %>',
+
+          'checkout_step': <%= @order.checkout_steps.index(@order.state) %>,
+          'items': [
+          <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+          ]
+        });
+      <% end %>
+
     </script>
 <% end %>
