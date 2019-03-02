@@ -4,23 +4,23 @@
 
       gtag('event', 'page_view', {
         'send_to': [
-      <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
       <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
         'ecomm_prodid': '<%= @product.sku %>',
         'ecomm_pagetype': 'product',
         'ecomm_totalvalue': <%= @product.price_in(current_currency).amount.to_f %>,
-        'ecomm_catagory': '<%= @taxon.try(:name) %>'
-
+        'ecomm_catagory': '<%= @taxon.try(:name) %>',
       });
 
       gtag('event', 'view_item', {
         'send_to': [
+          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
           <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
 
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed <%= @product.name %>',
+        'google_business_vertical': 'retail',
 
         'items': [
             {
@@ -33,6 +33,7 @@
         ]
 
       });
+
   </script>
 
 <% end %>
