@@ -1,0 +1,5 @@
+<% @order.line_items.each do |line_item| %>
+  {
+    'id': '<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',
+  },
+<% end %>

@@ -11,5 +11,12 @@ module Spree
       end.merge(optional).to_json.html_safe
     end
 
+    def product_for_google_ads(product, optional = {})
+      {
+        id: product.sku,
+      }.tap do |hash|
+      end.merge(optional).to_json.html_safe
+    end
+
   end
 end
