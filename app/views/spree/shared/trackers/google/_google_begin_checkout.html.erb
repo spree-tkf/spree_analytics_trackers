@@ -4,6 +4,7 @@
 
       gtag('event', 'page_view', {
         'send_to': [
+          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
           <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
 
@@ -22,7 +23,7 @@
         'event_label': 'Begin Checkout',
 
         'items': [
-        <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+          <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
         ]
       });
 
