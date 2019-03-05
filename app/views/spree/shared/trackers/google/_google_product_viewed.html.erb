@@ -2,23 +2,15 @@
 
     <script>
 
-      gtag('event', 'page_view', {
+      gtag('event', 'view_item', {
         'send_to': [
-      <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-      <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
         ],
         'ecomm_prodid': '<%= @product.sku %>',
         'ecomm_pagetype': 'product',
         'ecomm_totalvalue': <%= @product.price_in(current_currency).amount.to_f %>,
         'ecomm_catagory': '<%= @taxon.try(:name) %>',
-      });
-
-      gtag('event', 'view_item', {
-        'send_to': [
-          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-        ],
         'google_business_vertical': 'retail',
-
         'items': [
             {
             'id': '<%= @product.sku %>'
@@ -32,10 +24,12 @@
         'send_to': [
           <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
         ],
-
         'event_category': 'Enhanced Ecommerce',
         'event_label': 'Viewed <%= @product.name %>',
-
+        'ecomm_prodid': '<%= @product.sku %>',
+        'ecomm_pagetype': 'product',
+        'ecomm_totalvalue': <%= @product.price_in(current_currency).amount.to_f %>,
+        'ecomm_catagory': '<%= @taxon.try(:name) %>',
         'items': [
             {
             'id': '<%= @product.sku %>',

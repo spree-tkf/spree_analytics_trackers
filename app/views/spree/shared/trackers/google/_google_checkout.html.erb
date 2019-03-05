@@ -1,26 +1,17 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
     <script>
 
-      gtag('event', 'page_view', {
-        'send_to': [
-          <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-          <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-        ],
-        'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
-        'ecomm_pagetype': 'cart',
-        'ecomm_totalvalue': '<%= @order.total %>'
-      });
-
       <% if (@order.checkout_steps.index(@order.state) == 0) %>
 
           gtag('event', 'begin_checkout', {
             'send_to': [
               <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
             ],
-
             'event_category': 'Enhanced Ecommerce',
             'event_label': 'Begin Checkout',
-
+            'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
+            'ecomm_pagetype': 'cart',
+            'ecomm_totalvalue': '<%= @order.total %>',
             'items': [
             <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
             ]
@@ -34,7 +25,9 @@
           ],
           'event_category': 'Enhanced Ecommerce',
           'event_label': 'Viewed Checkout Step <%= @order.checkout_steps.index(@order.state) %>',
-
+          'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
+          'ecomm_pagetype': 'cart',
+          'ecomm_totalvalue': '<%= @order.total %>',
           'checkout_step': <%= @order.checkout_steps.index(@order.state) %>,
           'items': [
           <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>

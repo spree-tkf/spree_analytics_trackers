@@ -7,9 +7,6 @@
         gtag('js', new Date());
         gtag('config', '<%= tracker.analytics_id %>', {
           'groups': 'analytics_tag',
-        <% if ['product-details', 'cart', 'checkout-page', 'purchase'].include?(@body_id) %>
-          'send_page_view': false,
-        <% end %>
           'custom_map': {
             'dimension1': 'ecomm_prodid',
             'dimension2': 'ecomm_pagetype',
