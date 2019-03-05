@@ -1,8 +1,6 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) %>
     <script>
-
       <% if (@order.checkout_steps.index(@order.state) == 0) %>
-      
           gtag('event', 'begin_checkout', {
             'send_to': [
               <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
@@ -16,9 +14,7 @@
             <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
             ]
           });
-
       <% else %>
-
         gtag('event', 'checkout_progress', {
           'send_to': [
             <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
@@ -34,6 +30,5 @@
           ]
         });
       <% end %>
-
     </script>
 <% end %>

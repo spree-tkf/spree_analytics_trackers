@@ -1,18 +1,18 @@
 <% if tracker = Spree::Tracker.current(:google_analytics) || tracker = Spree::Tracker.current(:google_ads) %>
   <script>
-        gtag('event', 'view_item_list', {
-          'send_to': [
-            <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-            <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-          ],
-          'event_category': 'Enhanced Ecommerce',
-          'event_label': 'Viewed Collection',
-          'google_business_vertical': 'retail',
-          'items': [
-          <% products.each_with_index do |product, index| %>
-            <%= product_for_google(product) %>,
-          <% end %>
-          ]
-        });
+    gtag('event', 'view_item_list', {
+      'send_to': [
+        <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
+        <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+      ],
+      'event_category': 'Enhanced Ecommerce',
+      'event_label': 'Viewed Collection',
+      'google_business_vertical': 'retail',
+      'items': [
+      <% products.each_with_index do |product, index| %>
+        <%= product_for_google(product) %>,
+      <% end %>
+      ]
+    });
   </script>
 <% end %>

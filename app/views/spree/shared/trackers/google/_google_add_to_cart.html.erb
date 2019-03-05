@@ -1,27 +1,27 @@
-<script>
-  
-  <% if tracker = Spree::Tracker.current(:google_analytics) || tracker = Spree::Tracker.current(:google_ads) %>
-        gtag('event', 'add_to_cart', {
-          'send_to': [
-            <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
-            <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
-          ],
-          'event_category': 'Enhanced Ecommerce',
-          'event_label': 'Viewed Cart',
-          'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
-          'ecomm_pagetype': 'cart',
-          'ecomm_totalvalue': <%= @order.total.to_f %>,
-          'google_business_vertical': 'retail',
-          'items': [
-          <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
-          ]
-        });
-  <% end %>
+<% if tracker = Spree::Tracker.current(:google_analytics) || tracker = Spree::Tracker.current(:google_ads) %>
+  <script>
+    gtag('event', 'add_to_cart', {
+      'send_to': [
+        <% if tracker = Spree::Tracker.current(:google_ads) %>'ads_tag',<% end %>
+        <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
+      ],
+      'event_category': 'Enhanced Ecommerce',
+      'event_label': 'Viewed Cart',
+      'ecomm_prodid': [<% @order.line_items.each do |line_item| %>'<%= j (line_item.sku.present? ? line_item.sku : line_item.variant_id.to_s) %>',<% end %>],
+      'ecomm_pagetype': 'cart',
+      'ecomm_totalvalue': <%= @order.total.to_f %>,
+      'google_business_vertical': 'retail',
+      'items': [
+      <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+      ]
+    });
+  </script>
+<% end %>
 
-  <% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_view_cart_label) %>
-        gtag('event', 'conversion', {
-          'send_to': 'AW-<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_view_cart_label) %><%= tracker.analytics_id %><% end %>'
-        });
-  <% end %>
-
-</script>
+<% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_view_cart_label) %>
+  <script>
+    gtag('event', 'conversion', {
+      'send_to': 'AW-<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_view_cart_label) %><%= tracker.analytics_id %><% end %>'
+    });
+  </script>
+<% end %>
