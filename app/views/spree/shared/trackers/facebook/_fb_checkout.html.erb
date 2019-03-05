@@ -1,0 +1,20 @@
+
+<% if tracker = Spree::Tracker.current(:google_analytics) %>
+
+      <% if (@order.checkout_steps.index(@order.state) == 0) %>
+      <script>
+        fbq('track', 'InitiateCheckout', {
+          value: <%= @order.total.to_f %>,
+          currency: '<%= @order.currency %>',
+        });
+      </script>
+      <% elsif (@order.checkout_steps.index(@order.state) == 2) %>
+      <script>
+        fbq('track', 'AddPaymentInfo', {
+          value: <%= @order.total.to_f %>,
+          currency: '<%= @order.currency %>',
+        });
+      </script>
+      <% end %>
+
+<% end %>

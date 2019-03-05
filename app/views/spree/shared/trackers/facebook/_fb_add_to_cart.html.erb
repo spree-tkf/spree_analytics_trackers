@@ -1,0 +1,10 @@
+<script>
+  fbq('track', 'AddToCart', {
+    value: <%= @order.total.to_f %>,
+    currency: '<%= @order.currency %>',
+    contents: [
+      <%= render partial: 'spree/shared/trackers/facebook/fb_add_items', locals: { order: @order } %>
+    ],
+    content_type: 'product'
+  });
+</script>

@@ -1,0 +1,8 @@
+<script>
+  fbq('track', 'ViewContent', {
+    value: <%= @product.price_in(current_currency).amount.to_f %>,
+    currency: '<%= current_currency %>',
+    content_ids: '<%= @product.sku %>',
+    content_type: 'product'
+  });
+</script>
