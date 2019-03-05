@@ -1,4 +1,4 @@
-<% if tracker = Spree::Tracker.current(:facebook_pixel) %>
+<% if tracker = Spree::Tracker.current(:facebook_pixel) && @order.total > 0 %>
   <script>
     fbq('track', 'AddToCart', {
       value: <%= @order.total.to_f %>,
