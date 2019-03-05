@@ -1,27 +1,32 @@
-  <% if tracker = Spree::Tracker.current(:google_analytics)  %>
-
+<% if tracker = Spree::Tracker.current(:google_analytics) %>
       <script async src='https://www.googletagmanager.com/gtag/js?id=<%= tracker.analytics_id %>'></script>
+    <% elsif tracker = Spree::Tracker.current(:google_ads) %>
+      <script async src='https://www.googletagmanager.com/gtag/js?id=AW-<%= tracker.analytics_id %>'></script>
+<% end %>
+
+<% if tracker = Spree::Tracker.current(:google_analytics) || tracker = Spree::Tracker.current(:google_ads) %>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '<%= tracker.analytics_id %>', {
-          'groups': 'analytics_tag',
-          'custom_map': {
-            'dimension1': 'ecomm_prodid',
-            'dimension2': 'ecomm_pagetype',
-            'dimension3': 'ecomm_totalvalue',
-            'dimension4': 'ecomm_catagory'
-          }
 
-        });
+            <% if tracker = Spree::Tracker.current(:google_analytics) %>
+              gtag('config', '<%= tracker.analytics_id %>', {
+                'groups': 'analytics_tag',
+                'custom_map': {
+                  'dimension1': 'ecomm_prodid',
+                  'dimension2': 'ecomm_pagetype',
+                  'dimension3': 'ecomm_totalvalue',
+                  'dimension4': 'ecomm_catagory'
+                }
+              });
+            <% end %>
 
-        <% if tracker = Spree::Tracker.current(:google_ads) %>
-        gtag('config', 'AW-<%= tracker.analytics_id %>', {
-          'groups': 'ads_tag',
-          'send_page_view': false,
-        });
-        <% end %>
+            <% if tracker = Spree::Tracker.current(:google_ads) %>
+              gtag('config', 'AW-<%= tracker.analytics_id %>', {
+                'groups': 'ads_tag',
+                'send_page_view': false,
+              });
+            <% end %>
       </script>
-
-  <% end %>
+<% end %>

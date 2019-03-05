@@ -13,7 +13,7 @@
           'google_business_vertical': 'retail',
           'value': <%= (@order.total - @order.ship_total ) - @order.tax_total.to_f %>,
           'items': [
-              <%= render partial: 'spree/shared/trackers/google/google_add_items_adwords', locals: { order: @order } %>
+            <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
           ]
         });
       </script>
@@ -36,7 +36,7 @@
           'tax': <%= @order.tax_total.to_f %>,
           'shipping':<%= @order.ship_total.to_f %>,
           'items': [
-              <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
+            <%= render partial: 'spree/shared/trackers/google/google_add_items', locals: { order: @order } %>
           ]
         });
       </script>
