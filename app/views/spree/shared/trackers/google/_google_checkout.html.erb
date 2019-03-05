@@ -2,7 +2,7 @@
     <script>
 
       <% if (@order.checkout_steps.index(@order.state) == 0) %>
-
+      
           gtag('event', 'begin_checkout', {
             'send_to': [
               <% if tracker = Spree::Tracker.current(:google_analytics) %>'analytics_tag',<% end %>
