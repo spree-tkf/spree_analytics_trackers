@@ -25,7 +25,7 @@
             <% if tracker = Spree::Tracker.current(:google_ads) %>
               gtag('config', 'AW-<%= tracker.analytics_id %>', {
                 'groups': 'ads_tag',
-                'send_page_view': false,
+                'send_page_view': false
               });
             <% end %>
       </script>
