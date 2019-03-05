@@ -1,12 +1,14 @@
-<% if order_just_completed?(@order) %>
-  <script>
-    fbq('track', 'Purchase', {
-      value: <%= @order.total.to_f %>,
-      currency: '<%= @order.currency %>',
-      contents: [
-        <%= render partial: 'spree/shared/trackers/facebook/fb_add_items', locals: { order: @order } %>
-      ],
-      content_type: 'product'
-    });
-  </script>
+<% if tracker = Spree::Tracker.current(:facebook_pixel) %>
+  <% if order_just_completed?(@order) %>
+    <script>
+      fbq('track', 'Purchase', {
+        value: <%= @order.total.to_f %>,
+        currency: '<%= @order.currency %>',
+        contents: [
+          <%= render partial: 'spree/shared/trackers/facebook/fb_add_items', locals: { order: @order } %>
+        ],
+        content_type: 'product'
+      });
+    </script>
+  <% end %>
 <% end %>
