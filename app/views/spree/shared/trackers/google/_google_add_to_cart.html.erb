@@ -17,11 +17,3 @@
     });
   </script>
 <% end %>
-
-<% if tracker = Spree::Tracker.current(:google_ads) && tracker = Spree::Tracker.current(:google_ads_view_cart_label) %>
-  <script>
-    gtag('event', 'conversion', {
-      'send_to': 'AW-<% if tracker = Spree::Tracker.current(:google_ads) %><%= tracker.analytics_id %><% end %>/<% if tracker = Spree::Tracker.current(:google_ads_view_cart_label) %><%= tracker.analytics_id %><% end %>'
-    });
-  </script>
-<% end %>
